@@ -18,8 +18,8 @@ import gov.usdot.cv.msg.builder.input.IntersectionInputData.VerifiedPoint;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonParseException;
-import org.codehaus.jackson.map.JsonMappingException;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import org.junit.Test;
 
 

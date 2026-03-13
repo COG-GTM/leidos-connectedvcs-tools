@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import gov.usdot.cv.msg.builder.util.OffsetEncoding.OffsetEncodingType;
 import gov.usdot.cv.rgaencoder.DDate;

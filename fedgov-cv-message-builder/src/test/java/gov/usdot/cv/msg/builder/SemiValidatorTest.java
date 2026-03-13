@@ -16,12 +16,14 @@ package gov.usdot.cv.msg.builder;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import javax.xml.bind.DatatypeConverter;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.sun.jersey.test.framework.JerseyTest;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
+import javax.ws.rs.core.Application;
 
 import gov.usdot.cv.msg.builder.util.SemiValidator;
 import gov.usdot.cv.msg.builder.util.SemiValidatorException;
@@ -35,7 +37,12 @@ public class SemiValidatorTest extends JerseyTest {
 	private static final Logger logger = LogManager.getLogger(SemiValidatorTest.class);
 
 	public SemiValidatorTest() throws Exception {
-		super("gov.usdot.cv.msg.builder");
+		super();
+	}
+
+	@Override
+	protected Application configure() {
+		return new ResourceConfig().packages("gov.usdot.cv.msg.builder");
 	}
 
 	@Test

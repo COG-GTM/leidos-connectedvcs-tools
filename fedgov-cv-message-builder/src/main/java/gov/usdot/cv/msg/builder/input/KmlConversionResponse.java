@@ -1,11 +1,8 @@
 package gov.usdot.cv.msg.builder.input;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 /**
  * Response object returned on successul or unsuccessful KML conversion of an RSM document(s)
  */
-@XmlRootElement
 public class KmlConversionResponse {
     private boolean successful;
     private String errorMessage;

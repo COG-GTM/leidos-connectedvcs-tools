@@ -16,8 +16,8 @@ import gov.usdot.cv.asn1decoder.Decoder;
 import gov.usdot.cv.libasn1decoder.DecodedResult;
 import gov.usdot.cv.asn1decoder.ByteArrayObject;
 
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 
 public class SemiValidator {

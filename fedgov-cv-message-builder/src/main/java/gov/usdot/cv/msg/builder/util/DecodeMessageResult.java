@@ -13,9 +13,6 @@ the License.
 */
 package gov.usdot.cv.msg.builder.util;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class DecodeMessageResult {
 	
 	public enum Status {
