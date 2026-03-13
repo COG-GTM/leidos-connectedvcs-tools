@@ -62,7 +62,7 @@ jobs:
             mkdir -p tomcat/webapps/connectedvcs-tools/ROOT/WEB-INF/classes
             mv $GITHUB_WORKSPACE/root/WEB-INF/web.xml $GITHUB_WORKSPACE/tomcat/webapps/connectedvcs-tools/ROOT/WEB-INF/
             mv $GITHUB_WORKSPACE/root/index.html $GITHUB_WORKSPACE/tomcat/webapps/connectedvcs-tools/
-            mv -n $GITHUB_WORKSPACE/root/* $GITHUB_WORKSPACE/tomcat/webapps/connectedvcs-tools/ROOT/
+            mv -n $GITHUB_WORKSPACE/root/* $GITHUB_WORKSPACE/tomcat/webapps/connectedvcs-tools/ROOT/ || true
             cp $GITHUB_WORKSPACE/fedgov-cv-TIMcreator-webapp/target/tim.war $GITHUB_WORKSPACE/tomcat/webapps/
             cp $GITHUB_WORKSPACE/fedgov-cv-ISDcreator-webapp/target/isd.war $GITHUB_WORKSPACE/tomcat/webapps/
             cp $GITHUB_WORKSPACE/fedgov-cv-message-validator-webapp/target/validator.war $GITHUB_WORKSPACE/tomcat/webapps/
