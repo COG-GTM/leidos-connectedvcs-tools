@@ -64,7 +64,7 @@
 			<version>2.23.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jasig.cas</groupId>
+			<groupId>org.jasig.cas.client</groupId>
 			<artifactId>cas-client-core</artifactId>
 			<scope>runtime</scope>
 			<type>jar</type>
