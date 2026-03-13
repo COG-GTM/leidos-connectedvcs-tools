@@ -21,7 +21,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.UriInfo;
-import javax.xml.bind.DatatypeConverter;
+import java.util.HexFormat;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -69,7 +69,7 @@ public class DecodeMessageResource {
 
 				// Converting provided Hex String toBytes
 
-				encoded_ba = DatatypeConverter.parseHexBinary(encodedMsgtrimmed);
+				encoded_ba = HexFormat.of().parseHex(encodedMsgtrimmed);
 			} catch (Exception e) {
 				DecodeMessageResult result = new DecodeMessageResult();
 				JSONObject returnStatusObject = new JSONObject();

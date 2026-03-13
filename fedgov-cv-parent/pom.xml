@@ -24,6 +24,7 @@
 	</repositories>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>17</java.version>
 		<sonar.organization>usdot-fhwa-stol</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
@@ -109,6 +110,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.13.0</version>
+					<configuration>
+						<release>${java.version}</release>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

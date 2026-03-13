@@ -1,7 +1,7 @@
-FROM gradle:7.4.2-jdk8 AS gradle-build
+FROM gradle:8.5-jdk17 AS gradle-build
 ARG USE_SSL
 RUN ls -la && pwd
-FROM maven:3.8.5-jdk-8-slim AS mvn-build
+FROM maven:3.9.6-eclipse-temurin-17 AS mvn-build
 COPY . /root
 
 # Install gettext to use envsubst
@@ -27,20 +27,14 @@ COPY ./build.sh /root
 WORKDIR /root
 RUN ./build.sh
 
-FROM jetty:9.4.46-jre8-slim
+FROM jetty:10.0.20-jre17-alpine
 ARG USE_SSL
 
 # Switch to root for installations and configurations
 USER root
 
 # Install GDAL for georeferencing service
-RUN apt-get update && \
-    apt-get install -y gdal-bin libgdal28  \
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/*
+RUN apk add --no-cache gdal gdal-tools
 
 # Create third_party_lib directory and set permissions early
 RUN mkdir -p /var/lib/jetty/webapps/third_party_lib && \
@@ -65,9 +59,9 @@ COPY --from=mvn-build --chown=root:jetty  --chmod=755  /root/fedgov-cv-lib-asn1c
 COPY --from=mvn-build --chown=root:jetty  --chmod=755  /root/fedgov-cv-lib-asn1c/third_party_lib/libasn1c_x86.so /var/lib/jetty/webapps/third_party_lib
 COPY --from=mvn-build --chown=root:jetty  --chmod=755  /root/fedgov-cv-lib-asn1c/third_party_lib/libasn1c_rga.so /var/lib/jetty/webapps/third_party_lib
 
-# Set library path env and update ldconfig
+# Set library path env for native libraries
 ENV LD_LIBRARY_PATH=/var/lib/jetty/webapps/third_party_lib
-RUN ldconfig
+RUN echo "/var/lib/jetty/webapps/third_party_lib" > /etc/ld-musl-x86_64.path
 
 # Prepare Jetty base and restrict write access to config
 WORKDIR /var/lib/jetty
