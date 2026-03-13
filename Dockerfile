@@ -59,9 +59,9 @@ COPY --from=mvn-build --chown=root:jetty  --chmod=755  /root/fedgov-cv-lib-asn1c
 COPY --from=mvn-build --chown=root:jetty  --chmod=755  /root/fedgov-cv-lib-asn1c/third_party_lib/libasn1c_x86.so /var/lib/jetty/webapps/third_party_lib
 COPY --from=mvn-build --chown=root:jetty  --chmod=755  /root/fedgov-cv-lib-asn1c/third_party_lib/libasn1c_rga.so /var/lib/jetty/webapps/third_party_lib
 
-# Set library path env and update ldconfig
+# Set library path env for native libraries
 ENV LD_LIBRARY_PATH=/var/lib/jetty/webapps/third_party_lib
-RUN ldconfig
+RUN echo "/var/lib/jetty/webapps/third_party_lib" > /etc/ld-musl-x86_64.path
 
 # Prepare Jetty base and restrict write access to config
 WORKDIR /var/lib/jetty
