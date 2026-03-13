@@ -49,6 +49,14 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
     </dependency>
+    <!--
+      NOTE: spring-boot-starter-jetty is managed by Spring Boot 2.7.18 BOM, which
+      pulls Jetty 9.4.x internally. Spring Boot 2.7 is not compatible with Jetty 12.
+      This dependency is scoped as 'provided' because Jetty is the runtime container.
+      When Spring Boot is upgraded to 3.x (which requires jakarta.servlet), this
+      starter will naturally align with Jetty 12 ee10. Until then, the WAR deploys
+      into the Jetty 12 ee8 container which provides the javax.servlet API at runtime.
+    -->
     <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jetty</artifactId>
@@ -146,10 +154,11 @@
     </pluginManagement>
 
     <plugins>
+      <!-- Jetty 12 ee8 Maven plugin for javax.servlet compatibility -->
       <plugin>
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.54.v20240208</version>
+        <groupId>org.eclipse.jetty.ee8</groupId>
+        <artifactId>jetty-ee8-maven-plugin</artifactId>
+        <version>12.0.21</version>
       </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
