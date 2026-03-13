@@ -89,7 +89,7 @@ COPY --chown=root:root  --chmod=644 ssl.ini /tmp/
 
 # Create Jetty base structure and modules as root, then lock down
 # Enable ee8-deploy module for javax.servlet WAR deployment support
-RUN java -jar "$JETTY_HOME"/start.jar --add-modules=ee8-deploy,logging-log4j2 && \
+RUN java -jar "$JETTY_HOME"/start.jar --add-modules=ee8-deploy,logging-log4j2 --approve-all-licenses && \
     echo 'log4j2.version=2.23.1' >> /var/lib/jetty/start.d/logging-log4j2.ini && \
     java -jar "$JETTY_HOME"/start.jar --create-files
 
