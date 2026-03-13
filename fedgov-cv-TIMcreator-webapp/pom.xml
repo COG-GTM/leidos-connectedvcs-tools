@@ -64,19 +64,22 @@
 	<build>
 		<finalName>tim</finalName>
 		<plugins>
-						<plugin>
-			                <groupId>org.apache.maven.plugins</groupId>
-			                <artifactId>maven-compiler-plugin</artifactId>
-			                <configuration>
-			                    <release>${java.version}</release>
-			                </configuration>
-			            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<ignoreWebxml>false</ignoreWebxml>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
