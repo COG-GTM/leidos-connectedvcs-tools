@@ -16,14 +16,14 @@
 
 package gov.usdot.cv.msg.builder;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import gov.usdot.cv.timencoder.*;
 import gov.usdot.cv.msg.builder.exception.MessageEncodeException;
 import gov.usdot.cv.msg.builder.message.TravelerInformationMessage;
 import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class TravelerInformationBuilderTest {
 

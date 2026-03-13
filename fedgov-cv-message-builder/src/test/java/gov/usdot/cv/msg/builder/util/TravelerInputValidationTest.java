@@ -16,7 +16,8 @@
 
 package gov.usdot.cv.msg.builder.util;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import gov.usdot.cv.msg.builder.input.TravelerInputData;
 
 public class TravelerInputValidationTest {
@@ -29,11 +30,11 @@ public class TravelerInputValidationTest {
         return data;
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidRegionType() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.regions[0].regionType = "badregiontype";
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -46,11 +47,11 @@ public class TravelerInputValidationTest {
         }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidExtent() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.regions[0].extent = 25;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -60,11 +61,11 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidLaneNodeLat() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.regions[0].laneNodes[0].nodeLat = 0.0;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -74,11 +75,11 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidMutcd()throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.anchorPoint.mutcd = 99;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -88,11 +89,11 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_startTimeEmpty() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.anchorPoint.startTime = "";
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -103,12 +104,12 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_startTimeAfterEndTime  () throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.anchorPoint.startTime = "05/22/2015 10:56 AM";
         data.anchorPoint.endTime = "05/21/2015 10:56 AM";
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
         @Test
@@ -119,11 +120,11 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidInfoType() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.anchorPoint.infoType = 99;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -133,11 +134,11 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidVerifiedMapLat() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.verifiedPoint.verifiedMapLat = 0.0;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -147,11 +148,11 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidVerifiedSurveyedLon ()throws Exception {
         TravelerInputData data = createValidTravelerInput();
         data.verifiedPoint.verifiedSurveyedLon = 200.0;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test
@@ -161,14 +162,14 @@ public class TravelerInputValidationTest {
         data.validate();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void validate_invalidTimeToLive() throws Exception {
         TravelerInputData data = createValidTravelerInput();
         if (data.deposit == null) {
             data.deposit = new TravelerInputData.Deposit();
         }
         data.deposit.timeToLive = 99;
-        data.validate();
+        assertThrows(IllegalArgumentException.class, () -> data.validate());
     }
 
     @Test

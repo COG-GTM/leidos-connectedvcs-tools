@@ -18,9 +18,9 @@ package gov.usdot.cv.mapencoder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -87,7 +87,7 @@ public class MapEncodeTest {
     Connection mockConnection;
     ConnectingLane mockConnectingLane;
 
-    @Before
+    @BeforeEach
     public void setup() {
 
         // MapData(boolean time_stamp_exists, byte msg_issue_revision, int layer_type,
@@ -368,6 +368,6 @@ public class MapEncodeTest {
 
         byte[] expected = { 0, 18, 110, 56, 1, 16, 32, -16, -39, 59, -70, 101, -27, -49, 46, 62, -102, 119, -18, 64, -58, 0, 24, 0, 22, 89, 53, -92, -23, 7, 107, 73, -46, 10, 16, 13, 0, -58, 4, 0, 72, 2, -26, -16, -77, 48, -18, -54, -127, -113, -107, 84, -4, 0, 52, 0, 20, 16, 20, 6, 24, 9, 1, 69, 0, -48, 14, 56, 4, 64, 36, -112, 5, 64, 22, 88, 0, -56, 0, -41, 53, -92, -23, 7, 53, -92, -23, 14, 14, 10, 4, 0, 76, 65, 16, -121, -63, 116, 2, 0, 24, 0, 23, -65, -63, -62, 2, 10, -127, -125, -115, -65, 0 };
 
-        Assert.assertArrayEquals(expected, res.getMessage());
+        Assertions.assertArrayEquals(expected, res.getMessage());
     }
 }

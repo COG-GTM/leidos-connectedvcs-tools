@@ -20,9 +20,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.*;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import gov.usdot.cv.msg.builder.message.IntersectionMessage;
 import gov.usdot.cv.msg.builder.exception.MessageBuildException;
@@ -33,7 +33,7 @@ public class IntersectionSituationDataBuilderTest {
     IntersectionSituationDataBuilder builder;
     IntersectionMessage res;
 
-    @Before
+    @BeforeEach
     public void setup() {
         builder = new IntersectionSituationDataBuilder();
     }
@@ -185,8 +185,8 @@ public class IntersectionSituationDataBuilderTest {
 
             // Safely assert if message exists
             if (e.getMessage() != null) {
-                assertTrue("Exception message should mention unsupported lane type",
-                    e.getMessage().toLowerCase().contains("unsupported"));
+                assertTrue(e.getMessage().toLowerCase().contains("unsupported"),
+                    "Exception message should mention unsupported lane type");
             }
         }
     }
@@ -205,8 +205,8 @@ public class IntersectionSituationDataBuilderTest {
 
             // Safely assert if message exists
             if (e.getMessage() != null) {
-                assertTrue("Exception message should mention null or empty lane type",
-                    e.getMessage().toLowerCase().contains("unsupported"));
+                assertTrue(e.getMessage().toLowerCase().contains("unsupported"),
+                    "Exception message should mention null or empty lane type");
             }
         }
     }

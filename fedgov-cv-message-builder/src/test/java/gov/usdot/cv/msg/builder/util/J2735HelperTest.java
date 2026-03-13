@@ -8,9 +8,9 @@ import gov.usdot.cv.mapencoder.IntersectionGeometry;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class J2735HelperTest {
     
@@ -22,7 +22,7 @@ public class J2735HelperTest {
     String hexres;
     
 
-    @Before
+    @BeforeEach
     public void setup() {
         helper = new J2735Helper();
         mockMap = mock(MapData.class);
@@ -48,6 +48,6 @@ public class J2735HelperTest {
         System.out.println("HEX: " + hexres);
 
         String expected = "00120430011020";
-        Assert.assertEquals(expected, hexres);
+        Assertions.assertEquals(expected, hexres);
     }
 }

@@ -39,8 +39,8 @@
 		<commons-io.version>2.18.0</commons-io.version>
 		<commons-codec.version>1.17.1</commons-codec.version>
 		<netty.version>4.1.118.Final</netty.version>
-		<junit.version>4.13.2</junit.version>
-		<mockito.version>3.12.4</mockito.version>
+		<junit-jupiter.version>5.11.4</junit-jupiter.version>
+		<mockito.version>4.11.0</mockito.version>
 		<cas-client.version>3.6.4</cas-client.version>
 	</properties>
 	<dependencyManagement>
@@ -52,16 +52,10 @@
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j.version}</version>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j2-impl</artifactId>
+				<version>2.23.1</version>
 				<scope>compile</scope>
-				<exclusions>
-					<exclusion>
-						<artifactId>log4j</artifactId>
-						<groupId>log4j</groupId>
-					</exclusion>
-				</exclusions>
 			</dependency>
 			<dependency>
 				<groupId>commons-io</groupId>
@@ -79,9 +73,9 @@
 				<version>${netty.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>${junit-jupiter.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>

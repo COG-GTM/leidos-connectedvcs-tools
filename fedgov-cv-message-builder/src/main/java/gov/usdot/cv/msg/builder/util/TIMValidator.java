@@ -13,7 +13,7 @@ the License.
 */
 package gov.usdot.cv.msg.builder.util;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import gov.usdot.cv.asn1decoder.TIMDecoder;
 import gov.usdot.cv.asn1decoder.ByteArrayObject;
 import gov.usdot.cv.libasn1decoder.DecodedResult;

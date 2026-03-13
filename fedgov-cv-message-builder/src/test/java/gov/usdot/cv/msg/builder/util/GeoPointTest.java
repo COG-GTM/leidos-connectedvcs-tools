@@ -1,8 +1,9 @@
 package gov.usdot.cv.msg.builder.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class GeoPointTest {
 	
@@ -42,31 +43,31 @@ public class GeoPointTest {
 		assertEquals(CONTROL_LATITUDE_OFFSET, ourYOffset, 100.);
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testLatOffsetTooSmall() {
 		GeoPoint point1 = new GeoPoint(42.0, -83.0);
 		GeoPoint point2 = new GeoPoint(42.1, -83.00145);
-		point1.getLatOffsetInCentimeters(point2);
+		assertThrows(IllegalArgumentException.class, () -> point1.getLatOffsetInCentimeters(point2));
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testLatOffsetTooLarge() {
 		GeoPoint point1 = new GeoPoint(42.0, -83.0);
 		GeoPoint point2 = new GeoPoint(42.1, -83.00145);
-		point2.getLatOffsetInCentimeters(point1);
+		assertThrows(IllegalArgumentException.class, () -> point2.getLatOffsetInCentimeters(point1));
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testLonOffsetTooSmall() {
 		GeoPoint point1 = new GeoPoint(42.0, -83.0);
 		GeoPoint point2 = new GeoPoint(42.00123, -83.1);
-		point2.getLonOffsetInCentimeters(point1);
+		assertThrows(IllegalArgumentException.class, () -> point2.getLonOffsetInCentimeters(point1));
 	}
 	
-	@Test (expected = IllegalArgumentException.class)
+	@Test
 	public void testLonOffsetTooLarge() {
 		GeoPoint point1 = new GeoPoint(42.0, -83.0);
 		GeoPoint point2 = new GeoPoint(42.00123, -83.1);
-		point1.getLonOffsetInCentimeters(point2);
+		assertThrows(IllegalArgumentException.class, () -> point1.getLonOffsetInCentimeters(point2));
 	}
 }

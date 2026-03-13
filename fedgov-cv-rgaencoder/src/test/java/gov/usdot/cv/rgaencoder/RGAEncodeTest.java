@@ -17,9 +17,9 @@ package gov.usdot.cv.rgaencoder;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -328,7 +328,7 @@ public class RGAEncodeTest {
     TimeWindowItemControlInfo mockFixedTimeWindowCtrl10;
     RGATimeRestrictions mockTimeRestrictions10;
 
-    @Before
+    @BeforeEach
     public void setup() {
         mockRGA = mock(RGAData.class);
         mockBaseLayer = mock(BaseLayer.class);
@@ -1183,6 +1183,6 @@ public class RGAEncodeTest {
                         6, 64, 0, 4, 0, 104, 0, -56, 2, 8, 120, 55, 34, 13, 37, 64, -101, 32, 64, 90, -62, 0, 64, 1, 64,
                         -128, 61, -124, 0, -128, 2, -128 };
 
-        Assert.assertArrayEquals(expected, res.getMessage()); 
+        Assertions.assertArrayEquals(expected, res.getMessage()); 
     }
 }
