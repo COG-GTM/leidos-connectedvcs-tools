@@ -110,7 +110,7 @@
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-			<plugin>
+				<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
@@ -121,6 +121,34 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>enforce-banned-dependencies-due-to-security-vulnerabilities</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<bannedDependencies>
+									<excludes>
+										<exclude>commons-collections</exclude>
+										<exclude>commons-collections:commons-collections</exclude>
+										<exclude>*:commons-collections</exclude>
+									</excludes>
+									<includes>
+										<include>commons-collections:commons-collections:3.2.2</include>
+									</includes>
+								</bannedDependencies>
+							</rules>
+							<fail>true</fail>
+							<message>There were dependencies found which should not be
+								included due to security vulnerabilities.</message>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

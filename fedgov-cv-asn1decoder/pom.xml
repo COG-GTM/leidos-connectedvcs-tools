@@ -71,7 +71,7 @@
 			<version>4.0.0</version>
 		</dependency>
 	</dependencies>
-	<build>
+		<build>
 				<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -79,6 +79,9 @@
 				<configuration>
 					<release>${java.version}</release>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

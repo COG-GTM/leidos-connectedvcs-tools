@@ -71,12 +71,15 @@
                     <release>${java.version}</release>
                 </configuration>
             </plugin>
-			<plugin>
+				<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
 					<ignoreWebxml>false</ignoreWebxml>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

@@ -46,6 +46,9 @@
 					<release>${java.version}</release>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-enforcer-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 </project>
