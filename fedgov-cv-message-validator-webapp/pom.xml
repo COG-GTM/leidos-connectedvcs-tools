@@ -13,15 +13,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-        <sonar.organization>usdot-fhwa-stol</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        
-        <!-- JaCoCo Properties -->
-        <jacoco.version>0.8.8</jacoco.version>
-        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
-        <sonar.language>java</sonar.language>	
 	</properties>
 	<dependencies>
 		<dependency>
@@ -32,13 +23,13 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.1</version>
+			<version>1.5</version>
 		</dependency>
 	
 		<dependency>
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
-			<version>3.2.1</version>
+			<version>3.2.2</version>
 		</dependency>
 		<dependency>
 			<groupId>gov.usdot</groupId>
@@ -60,7 +51,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 				<dependency>
@@ -74,9 +64,8 @@
 			<version>2.23.1</version>
 		</dependency>
 		<dependency>
-			<groupId>org.jasig.cas</groupId>
+			<groupId>org.jasig.cas.client</groupId>
 			<artifactId>cas-client-core</artifactId>
-			<version>3.1.10</version>
 			<scope>runtime</scope>
 			<type>jar</type>
 		</dependency>
@@ -93,7 +82,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -101,7 +89,6 @@
 			</plugin>
         <plugin>
             <artifactId>maven-war-plugin</artifactId>
-            <version>2.2</version>
             <configuration>
                 <ignoreWebxml>false</ignoreWebxml>
                 <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
