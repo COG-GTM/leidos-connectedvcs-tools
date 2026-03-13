@@ -16,7 +16,7 @@
 
 package gov.usdot.cv.fedgov_cv_map_georeferencing.dto;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
