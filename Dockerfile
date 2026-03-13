@@ -1,13 +1,11 @@
-FROM gradle:7.4.2-jdk8 AS gradle-build
+FROM gradle:7.6-jdk17 AS gradle-build
 ARG USE_SSL
 RUN ls -la && pwd
-FROM maven:3.8.5-jdk-8-slim AS mvn-build
+FROM maven:3.9-eclipse-temurin-17-alpine AS mvn-build
 COPY . /root
 
-# Install gettext to use envsubst
-RUN apt-get update && \
-    apt-get install -y gettext-base && \
-    apt-get clean
+# Install gettext to use envsubst and bash for build.sh
+RUN apk add --no-cache gettext bash
 
 # Update the web.xml based on SSL selection
 RUN if [ "$USE_SSL" = "true" ]; then \
@@ -27,7 +25,7 @@ COPY ./build.sh /root
 WORKDIR /root
 RUN ./build.sh
 
-FROM jetty:9.4.46-jre8-slim
+FROM jetty:9.4-jdk17-slim
 ARG USE_SSL
 
 # Switch to root for installations and configurations

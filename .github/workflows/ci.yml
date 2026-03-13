@@ -14,7 +14,7 @@ jobs:
     Build:
       runs-on: ubuntu-latest
       container:
-        image: maven:3.8.5-jdk-8-slim
+        image: maven:3.9-eclipse-temurin-17-alpine
         options: --user root
       steps:
         - name: Checkout ${{ github.event.repository.name }}
@@ -44,8 +44,7 @@ jobs:
               /__w/connectedvcs-tools/connectedvcs-tools/fedgov-cv-message-builder/target/test-classes
         - name: Download Apache tomcat # Download apache tomcat for deployment
           run: |
-            apt-get update -y
-            apt-get -y install wget unzip sudo
+            apk add --no-cache wget unzip sudo shadow bash
             wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.34/bin/apache-tomcat-9.0.34.tar.gz
             tar -xzf apache-tomcat-9.0.34.tar.gz
             mv apache-tomcat-9.0.34 tomcat
