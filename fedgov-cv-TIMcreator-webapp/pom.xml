@@ -83,8 +83,8 @@
                 </configuration>
             </plugin>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.4.0</version>
 				<configuration>
 					<ignoreWebxml>false</ignoreWebxml>
 					<webXml>src/main/webapp/WEB-INF/web.xml</webXml>
