@@ -15,6 +15,8 @@
  */
 package gov.usdot.cv.config;
 
+import java.time.Duration;
+
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
@@ -30,7 +32,16 @@ public class CacheConfig {
     @Bean
     public CacheManager cacheManager() {
         CaffeineCacheManager cacheManager = new CaffeineCacheManager("mapTilesCache");
-        cacheManager.setCaffeine(Caffeine.newBuilder().recordStats());
+        cacheManager.setCaffeine(Caffeine.newBuilder()
+                .maximumWeight(1_073_741_824) // 1 GiB
+                .expireAfterWrite(Duration.ofDays(7))
+                .weigher((key, value) -> {
+                    if (value instanceof byte[] bytes) {
+                        return bytes.length;
+                    }
+                    return 1;
+                })
+                .recordStats());
         return cacheManager;
     }
 }
