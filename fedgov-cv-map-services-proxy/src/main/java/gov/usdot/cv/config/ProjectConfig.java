@@ -36,14 +36,14 @@ public class ProjectConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         String[] protectedUris = csrfProtectedURIs.split("\\s*,\\s*");
-        http.csrf(c -> c.requireCsrfProtectionMatcher(request -> {
+        http.csrf(c -> c.ignoringRequestMatchers(request -> {
             String uri = request.getRequestURI();
             for (String protectedUri : protectedUris) {
                 if (uri.contains(protectedUri)) {
-                    return true;
+                    return false; // Don't ignore CSRF for protected URIs
                 }
             }
-            return false;
+            return true; // Ignore CSRF for non-protected URIs
         }));
         http.authorizeHttpRequests(c -> c.anyRequest().permitAll());
 
