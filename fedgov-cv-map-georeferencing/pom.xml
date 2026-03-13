@@ -91,7 +91,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>30.1.1-jre</version>  <!-- Java 8 compatible -->
+			<version>32.1.3-jre</version>  <!-- Java 8 compatible -->
 		</dependency>
 	</dependencies>
 
