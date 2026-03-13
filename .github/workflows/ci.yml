@@ -14,7 +14,7 @@ jobs:
     Build:
       runs-on: ubuntu-latest
       container:
-        image: maven:3.9-eclipse-temurin-17-alpine
+        image: maven:3.9-eclipse-temurin-17
         options: --user root
       steps:
         - name: Checkout ${{ github.event.repository.name }}
@@ -46,7 +46,7 @@ jobs:
         - name: Download Apache tomcat # Download apache tomcat for deployment
           shell: bash
           run: |
-            apk add --no-cache wget unzip sudo shadow bash
+            apt-get update -y && apt-get -y install wget unzip sudo
             wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.34/bin/apache-tomcat-9.0.34.tar.gz
             tar -xzf apache-tomcat-9.0.34.tar.gz
             mv apache-tomcat-9.0.34 tomcat
