@@ -85,7 +85,7 @@ jobs:
         - name: Start Tomcat and verify deployment
           run: |
             mv setenv.sh $GITHUB_WORKSPACE/tomcat/bin/
-            sudo $GITHUB_WORKSPACE/tomcat/bin/catalina.sh start
+            sudo -E $GITHUB_WORKSPACE/tomcat/bin/catalina.sh start
         - name: Setup SonarScanner
           uses: warchant/setup-sonar-scanner@v7 # This action is to setup sonar scanner with required dep's
           with:
