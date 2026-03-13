@@ -16,9 +16,9 @@
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>2.5</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.17.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -49,8 +49,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
 				<dependency>
@@ -67,7 +67,6 @@
 			<groupId>org.jasig.cas.client</groupId>
 			<artifactId>cas-client-core</artifactId>
 			<scope>runtime</scope>
-			<type>jar</type>
 		</dependency>
 		<dependency>
 		    <groupId>javax.servlet</groupId>

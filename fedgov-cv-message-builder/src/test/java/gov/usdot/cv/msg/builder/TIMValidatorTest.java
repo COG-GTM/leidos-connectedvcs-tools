@@ -14,13 +14,13 @@ the License.
 
 package gov.usdot.cv.msg.builder;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import javax.xml.bind.DatatypeConverter;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,12 +51,12 @@ public class TIMValidatorTest {
         System.out.println("Decoded TIM Message:\n" + decodedMessage);
 
         // Basic sanity checks
-        assertTrue("Decoded message should not be empty",
-                decodedMessage != null && !decodedMessage.isEmpty());
+        assertTrue(decodedMessage != null && !decodedMessage.isEmpty(),
+                "Decoded message should not be empty");
 
         // Ensure ASN.1 structure exists
-        assertTrue("Decoded message should contain MessageFrame",
-                decodedMessage.contains("MessageFrame"));
+        assertTrue(decodedMessage.contains("MessageFrame"),
+                "Decoded message should contain MessageFrame");
 
         // Extract messageId from ASN.1 text
         Pattern pattern = Pattern.compile("messageId:\\s*(\\d+)");
@@ -68,7 +68,7 @@ public class TIMValidatorTest {
         }
 
         // TIM Message ID = 31
-        Assert.assertEquals("TIM messageId should be 31", 31, messageId);
+        Assertions.assertEquals(31, messageId, "TIM messageId should be 31");
     }
 
     @Test

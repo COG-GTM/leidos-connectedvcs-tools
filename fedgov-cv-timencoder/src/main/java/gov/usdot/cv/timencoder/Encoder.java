@@ -16,8 +16,8 @@
 
 package gov.usdot.cv.timencoder;
 import java.nio.ByteOrder;
-import org.jboss.netty.buffer.ChannelBuffer;
-import org.jboss.netty.buffer.ChannelBuffers;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,7 +55,7 @@ public class Encoder {
             return new ByteArrayObject("TIM", null);
         }
 
-        ChannelBuffer buffer = ChannelBuffers.copiedBuffer(ByteOrder.LITTLE_ENDIAN, encodeMsg);
+        ByteBuf buffer = Unpooled.copiedBuffer(encodeMsg);
         byte[] byteArray = new byte[buffer.readableBytes()];
         buffer.readBytes(byteArray);
         

@@ -1,8 +1,9 @@
 package gov.usdot.cv.msg.builder.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import gov.usdot.cv.msg.builder.input.IntersectionInputData;
 import gov.usdot.cv.msg.builder.input.IntersectionInputData.Approach;
 import gov.usdot.cv.msg.builder.input.IntersectionInputData.DrivingLane;
@@ -20,15 +21,15 @@ import java.io.IOException;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class JSONMapperTest {
 
-	@Test (expected = JsonParseException.class)
+	@Test
 	public void testInvalidJSON() throws JsonParseException, JsonMappingException, IOException {
 		String notJson = "Invalid JSON";
-		JSONMapper.jsonStringToPojo(notJson, IntersectionInputData.class);
+		assertThrows(JsonParseException.class, () -> JSONMapper.jsonStringToPojo(notJson, IntersectionInputData.class));
 	}
 	
 	public void testInvalidMapping() throws JsonParseException, JsonMappingException, IOException {

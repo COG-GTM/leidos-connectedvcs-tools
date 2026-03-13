@@ -13,12 +13,12 @@ the License.
 */
 package gov.usdot.cv.msg.builder;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import javax.xml.bind.DatatypeConverter;
 import org.codehaus.jettison.json.JSONObject;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import com.sun.jersey.test.framework.JerseyTest;
@@ -68,7 +68,7 @@ public class SemiValidatorTest extends JerseyTest {
 
 			// Comparing if messageID:18 is present in the decoded string Hex value is a MAP
 			// with messageID:18
-			Assert.assertEquals("The messageID should match", 18, messageId);
+			Assertions.assertEquals(18, messageId, "The messageID should match");
 
 		} catch (Exception e) {
 

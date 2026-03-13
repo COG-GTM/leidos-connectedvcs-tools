@@ -41,7 +41,7 @@ import gov.usdot.cv.msg.builder.input.TravelerInputData.ItisContent;
 import gov.usdot.cv.msg.builder.input.TravelerInputData.LaneNode;
 import gov.usdot.cv.msg.builder.input.TravelerInputData.Region;
 import gov.usdot.cv.timencoder.TravelerDataFrame.Content;
-import io.netty.handler.codec.http2.Http2FrameLogger.Direction;
+
 import gov.usdot.cv.msg.builder.util.BitStringHelper;
 import gov.usdot.cv.msg.builder.util.GeoPoint;
 import gov.usdot.cv.msg.builder.util.ItisNumberEncoder;

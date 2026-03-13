@@ -1,11 +1,11 @@
 package gov.usdot.cv.msg.builder.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ItisNumberEncoderTest {
 	
@@ -104,7 +104,7 @@ public class ItisNumberEncoderTest {
 	
 	private void testValidation(String[] values, boolean expectedResult) {
 		for( String value : values)
-			assertEquals("Testing: '" + value + "'", expectedResult, ItisNumberEncoder.isValid(value));
+			assertEquals(expectedResult, ItisNumberEncoder.isValid(value), "Testing: '" + value + "'");
 	}
 	
 	@Test

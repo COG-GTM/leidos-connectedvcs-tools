@@ -20,9 +20,9 @@ import static org.mockito.Mockito.when;
 import javax.xml.bind.DatatypeConverter;
 
 import gov.usdot.cv.libasn1decoder.DecodedResult;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -51,7 +51,7 @@ public class ASN1DecoderTest {
 
     
 
-    @Before
+    @BeforeEach
     public void setup() {
 
         decoder = new Decoder();
@@ -187,122 +187,122 @@ public class ASN1DecoderTest {
     @Test
     public void testDecodeBsm() {
         DecodedResult r1 = decoder.decode(bsmMsg1,"MessageFrame");
-        Assert.assertTrue(r1.success);
-        Assert.assertFalse(r1.decodedMessage.isEmpty());
-        Assert.assertEquals(
-            "Expected decoded message type to be 'BasicSafetyMessage'",
+        Assertions.assertTrue(r1.success);
+        Assertions.assertFalse(r1.decodedMessage.isEmpty());
+        Assertions.assertEquals(
             "BasicSafetyMessage",
-            r1.messageType
+            r1.messageType,
+            "Expected decoded message type to be 'BasicSafetyMessage'"
         );
 
         DecodedResult r2 = decoder.decode(bsmMsg2,"MessageFrame");
-        Assert.assertTrue(r2.success);
-        Assert.assertFalse(r2.decodedMessage.isEmpty());
-        Assert.assertEquals(
-            "Expected decoded message type to be 'BasicSafetyMessage'",
+        Assertions.assertTrue(r2.success);
+        Assertions.assertFalse(r2.decodedMessage.isEmpty());
+        Assertions.assertEquals(
             "BasicSafetyMessage",
-            r2.messageType
+            r2.messageType,
+            "Expected decoded message type to be 'BasicSafetyMessage'"
         );
     }
 
     @Test
     public void testDecodePsm() {
         DecodedResult r1 = decoder.decode(psmMsg1,"MessageFrame");
-        Assert.assertTrue(r1.success);
-        Assert.assertFalse(r1.decodedMessage.isEmpty());
-         Assert.assertEquals(
-            "Expected decoded message type to be 'PersonalSafetyMessage'",
+        Assertions.assertTrue(r1.success);
+        Assertions.assertFalse(r1.decodedMessage.isEmpty());
+         Assertions.assertEquals(
             "PersonalSafetyMessage",
-            r1.messageType
+            r1.messageType,
+            "Expected decoded message type to be 'PersonalSafetyMessage'"
         );
 
         DecodedResult r2 = decoder.decode(psmMsg2,"MessageFrame");
-        Assert.assertTrue(r2.success);
-        Assert.assertFalse(r2.decodedMessage.isEmpty());
-         Assert.assertEquals(
-            "Expected decoded message type to be 'PersonalSafetyMessage'",
+        Assertions.assertTrue(r2.success);
+        Assertions.assertFalse(r2.decodedMessage.isEmpty());
+         Assertions.assertEquals(
             "PersonalSafetyMessage",
-            r2.messageType
+            r2.messageType,
+            "Expected decoded message type to be 'PersonalSafetyMessage'"
         );
     }
 
     @Test
     public void testDecodeSpat() {
         DecodedResult r1 = decoder.decode(spatMsg1,"MessageFrame");
-        Assert.assertTrue(r1.success);
-        Assert.assertFalse(r1.decodedMessage.isEmpty());
-        Assert.assertEquals(
-            "Expected decoded message type to be 'SPAT'",
+        Assertions.assertTrue(r1.success);
+        Assertions.assertFalse(r1.decodedMessage.isEmpty());
+        Assertions.assertEquals(
             "SPaT",
-            r1.messageType
+            r1.messageType,
+            "Expected decoded message type to be 'SPAT'"
         );
 
         DecodedResult r2 = decoder.decode(spatMsg2,"MessageFrame");
-        Assert.assertTrue(r2.success);
-        Assert.assertFalse(r2.decodedMessage.isEmpty());
-        Assert.assertEquals(
-            "Expected decoded message type to be 'SPAT'",
+        Assertions.assertTrue(r2.success);
+        Assertions.assertFalse(r2.decodedMessage.isEmpty());
+        Assertions.assertEquals(
             "SPaT",
-            r2.messageType
+            r2.messageType,
+            "Expected decoded message type to be 'SPAT'"
         );
     }
 
     @Test
     public void testDecodeMapData() {
         DecodedResult r1 = decoder.decode(mapMsg1,"MessageFrame");
-        Assert.assertTrue(r1.success);
-        Assert.assertFalse(r1.decodedMessage.isEmpty());
-        Assert.assertEquals(
-            "Expected decoded message type to be 'MapData'",
+        Assertions.assertTrue(r1.success);
+        Assertions.assertFalse(r1.decodedMessage.isEmpty());
+        Assertions.assertEquals(
             "MapData",
-            r1.messageType
+            r1.messageType,
+            "Expected decoded message type to be 'MapData'"
         );
 
         DecodedResult r2 = decoder.decode(mapMsg2,"MessageFrame");
-        Assert.assertTrue(r2.success);
-        Assert.assertFalse(r2.decodedMessage.isEmpty());
-        Assert.assertEquals(
-            "Expected decoded message type to be 'MapData'",
+        Assertions.assertTrue(r2.success);
+        Assertions.assertFalse(r2.decodedMessage.isEmpty());
+        Assertions.assertEquals(
             "MapData",
-            r2.messageType
+            r2.messageType,
+            "Expected decoded message type to be 'MapData'"
         );
     }
 
     @Test
     public void testDecodeTravelerInformation() {
         DecodedResult r1 = decoder.decode(travelerInfoMsg1,"MessageFrame");
-        Assert.assertTrue(r1.success);
-        Assert.assertFalse(r1.decodedMessage.isEmpty());
-         Assert.assertEquals(
-            "Expected decoded message type to be 'TravelerInformationMessage'",
+        Assertions.assertTrue(r1.success);
+        Assertions.assertFalse(r1.decodedMessage.isEmpty());
+         Assertions.assertEquals(
             "TravelerInformationMessage",
-            r1.messageType
+            r1.messageType,
+            "Expected decoded message type to be 'TravelerInformationMessage'"
         );
 
         DecodedResult r2 = decoder.decode(travelerInfoMsg2,"MessageFrame");
-        Assert.assertTrue(r2.success);
-        Assert.assertFalse(r2.decodedMessage.isEmpty());
-         Assert.assertEquals(
-            "Expected decoded message type to be 'TravelerInformationMessage'",
+        Assertions.assertTrue(r2.success);
+        Assertions.assertFalse(r2.decodedMessage.isEmpty());
+         Assertions.assertEquals(
             "TravelerInformationMessage",
-            r2.messageType
+            r2.messageType,
+            "Expected decoded message type to be 'TravelerInformationMessage'"
         );
     }
     @Test
     public void ASN1DecoderTestEmpty() {
         DecodedResult decodedMessage = decoder.decode(emptyMsg,"empty");
-        Assert.assertFalse("Decoding result should be False", decodedMessage.success);
+        Assertions.assertFalse(decodedMessage.success, "Decoding result should be False");
     }
     @Test
     public void testDecodeOnlyTIM() {       
         
                 DecodedResult r = decoder.decode( onlyTIM, "TIM");
-                Assert.assertTrue(r.success);
-               Assert.assertFalse(r.decodedMessage.isEmpty());
-                 Assert.assertEquals(
-                        "Expected decoded message type to be 'TravelerInformationMessage'",
+                Assertions.assertTrue(r.success);
+               Assertions.assertFalse(r.decodedMessage.isEmpty());
+                 Assertions.assertEquals(
                         "TravelerInformationMessage",
-                        r.messageType
+                        r.messageType,
+                        "Expected decoded message type to be 'TravelerInformationMessage'"
                 );
         }
 
@@ -310,12 +310,12 @@ public class ASN1DecoderTest {
       public void testDecodeOnlyBSM() {       
         
                 DecodedResult r = decoder.decode( onlybsmMsg, "BSM");
-                Assert.assertTrue(r.success);
-               Assert.assertFalse(r.decodedMessage.isEmpty());
-                 Assert.assertEquals(
-                        "Expected decoded message type to be 'BasicSafetyMessage'",
+                Assertions.assertTrue(r.success);
+               Assertions.assertFalse(r.decodedMessage.isEmpty());
+                 Assertions.assertEquals(
                         "BasicSafetyMessage",
-                        r.messageType
+                        r.messageType,
+                        "Expected decoded message type to be 'BasicSafetyMessage'"
                 );
                
         }
@@ -323,36 +323,36 @@ public class ASN1DecoderTest {
         public void testDecodeOnlyPSM() {       
         
                 DecodedResult r = decoder.decode( onlypsmMsg, "PSM");
-                Assert.assertTrue(r.success);
-               Assert.assertFalse(r.decodedMessage.isEmpty());
-                 Assert.assertEquals(
-                        "Expected decoded message type to be 'PersonalSafetyMessage'",
+                Assertions.assertTrue(r.success);
+               Assertions.assertFalse(r.decodedMessage.isEmpty());
+                 Assertions.assertEquals(
                         "PersonalSafetyMessage",
-                        r.messageType
+                        r.messageType,
+                        "Expected decoded message type to be 'PersonalSafetyMessage'"
                 );    
         }
         @Test  
         public void testDecodeOnlySPAT() {       
         
                 DecodedResult r = decoder.decode( onlyspatMsg, "SPAT");
-                Assert.assertTrue(r.success);
-               Assert.assertFalse(r.decodedMessage.isEmpty());
-                 Assert.assertEquals(
-                        "Expected decoded message type to be 'SPaT'",
+                Assertions.assertTrue(r.success);
+               Assertions.assertFalse(r.decodedMessage.isEmpty());
+                 Assertions.assertEquals(
                         "SPaT",
-                        r.messageType
+                        r.messageType,
+                        "Expected decoded message type to be 'SPaT'"
                 );    
         }
         @Test  
         public void testDecodeOnlyMAP() {    
         
                 DecodedResult r = decoder.decode( onlymapMsg, "MAP");
-                Assert.assertTrue(r.success);
-               Assert.assertFalse(r.decodedMessage.isEmpty());
-                 Assert.assertEquals(
-                        "Expected decoded message type to be 'MapData'",
+                Assertions.assertTrue(r.success);
+               Assertions.assertFalse(r.decodedMessage.isEmpty());
+                 Assertions.assertEquals(
                         "MapData",
-                        r.messageType
+                        r.messageType,
+                        "Expected decoded message type to be 'MapData'"
                 );    
         }  
 

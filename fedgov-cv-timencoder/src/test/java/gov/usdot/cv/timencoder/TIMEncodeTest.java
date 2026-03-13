@@ -23,9 +23,9 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import gov.usdot.cv.asn1decoder.ByteArrayObject;
 import gov.usdot.cv.mapencoder.Position3D;
@@ -99,7 +99,7 @@ public class TIMEncodeTest {
         private MinutesDuration duration1, duration2, duration3;
         private HeadingSlice heading;
 
-        @Before
+        @BeforeEach
         public void setUp() {
                 // === SUT ===
                 encoder = new Encoder();
@@ -429,7 +429,7 @@ public class TIMEncodeTest {
         @Test
         public void TIM_encode_test() {
                 ByteArrayObject result = encoder.encode(mockTimData);
-                Assert.assertNotNull("Byte array should not be null", result.getMessage());
+                Assertions.assertNotNull(result.getMessage(), "Byte array should not be null");
                 byte[] expected = new byte[] {
                         0x00, 0x1F, (byte) 0x80, (byte) 0xF1, 0x20, (byte) 0xA0, 0x00, 0x00, 0x00, 0x00,
                         0x01, 0x67, 0x26, (byte) 0xDD, (byte) 0xC5, (byte) 0x88, 0x72, (byte) 0x9D, (byte) 0xC2, 0x0A,
@@ -460,10 +460,10 @@ public class TIMEncodeTest {
 
                     
 
-                Assert.assertArrayEquals(
-                "Encoded TIM message doesn't match expected output",
+                Assertions.assertArrayEquals(
                 expected,
-                result.getMessage());
+                result.getMessage(),
+                "Encoded TIM message doesn't match expected output");
         }
 
 }
