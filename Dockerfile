@@ -27,15 +27,19 @@ COPY ./build.sh /root
 WORKDIR /root
 RUN ./build.sh
 
-FROM jetty:9.4.46-jre8-slim
+FROM jetty:12.0-jre17
 ARG USE_SSL
+
+# Jetty 12 defaults to ee10 (jakarta.servlet). Configure ee8 (javax.servlet)
+# to maintain compatibility with existing WAR files using javax.servlet namespace.
+ENV JETTY_EE=ee8
 
 # Switch to root for installations and configurations
 USER root
 
 # Install GDAL for georeferencing service
 RUN apt-get update && \
-    apt-get install -y gdal-bin libgdal28  \
+    apt-get install -y gdal-bin libgdal-dev  \
     && apt-get autoremove -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
@@ -84,13 +88,15 @@ COPY --chown=root:jetty --chmod=640 keystore* /tmp/
 COPY --chown=root:root  --chmod=644 ssl.ini /tmp/
 
 # Create Jetty base structure and modules as root, then lock down
-RUN echo 'log4j2.version=2.23.1' >> /var/lib/jetty/start.d/logging-log4j2.ini && \
+# Enable ee8-deploy module for javax.servlet WAR deployment support
+RUN java -jar "$JETTY_HOME"/start.jar --add-modules=ee8-deploy,logging-log4j2 --approve-all-licenses && \
+    echo 'log4j2.version=2.23.1' >> /var/lib/jetty/start.d/logging-log4j2.ini && \
     java -jar "$JETTY_HOME"/start.jar --create-files
 
 # Conditionally add SSL or non-SSL based on the USE_SSL environment variable
 RUN if [ "$USE_SSL" = "true" ]; then \
         if [ -f /tmp/ssl.ini ]; then \
-            java -jar "$JETTY_HOME"/start.jar --add-to-start=https; \
+            java -jar "$JETTY_HOME"/start.jar --add-modules=ssl,https; \
             cp /tmp/keystore* /var/lib/jetty/etc/; \
             cp /tmp/ssl.ini /var/lib/jetty/start.d/; \
         else \
@@ -98,7 +104,7 @@ RUN if [ "$USE_SSL" = "true" ]; then \
             exit 1; \
         fi; \
     else \
-        java -jar "$JETTY_HOME"/start.jar --add-to-start=http; \
+        java -jar "$JETTY_HOME"/start.jar --add-modules=http; \
     fi && \
     # After creating config, ensure config remains read-only and runtime dirs writable
     chown -R root:root /var/lib/jetty/etc /var/lib/jetty/start.d && \
