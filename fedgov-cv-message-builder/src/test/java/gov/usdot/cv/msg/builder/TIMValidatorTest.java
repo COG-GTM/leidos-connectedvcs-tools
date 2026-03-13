@@ -17,7 +17,7 @@ package gov.usdot.cv.msg.builder;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import javax.xml.bind.DatatypeConverter;
+import java.util.HexFormat;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -41,7 +41,7 @@ public class TIMValidatorTest {
         TIMValidator validator = new TIMValidator();
 
         // TIM payload in HEX (replace with a valid TIM hex if needed)
-        byte[] bytes = DatatypeConverter.parseHexBinary(
+        byte[] bytes = HexFormat.of().parseHex(
             "001f5f201000000000002026731180b29dc20c8473928d7a374800002fd2fcd2c00030007e53b841908e7251af46e900b74000000118e7251f2e77082f3b8e725459a7707d7c813ec639c954489dc1e182639c959a99dc1cfe800100f9a808110020"
         );
 
