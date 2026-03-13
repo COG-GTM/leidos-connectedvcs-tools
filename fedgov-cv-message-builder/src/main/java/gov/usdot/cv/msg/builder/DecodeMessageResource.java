@@ -31,8 +31,8 @@ import gov.usdot.cv.msg.builder.util.DecodeMessageResult;
 import gov.usdot.cv.msg.builder.util.SemiValidator;
 import gov.usdot.cv.msg.builder.util.SemiValidatorException;
 import gov.usdot.cv.msg.builder.util.DecodeMessageResult.Status;
-import org.codehaus.jettison.json.JSONException;
-import org.codehaus.jettison.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 @Path("/decode")
 public class DecodeMessageResource {
