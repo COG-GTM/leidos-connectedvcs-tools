@@ -1,0 +1,34 @@
+{
+  "description": "Sample BSM (Basic Safety Message) - J2735 Part I Core Data",
+  "messageType": "BSM",
+  "coreData": {
+    "msgCount": 42,
+    "temporaryId": "AABB1122",
+    "position": {
+      "latitude": 38.8642,
+      "longitude": -77.2270,
+      "elevation": 85.0
+    },
+    "speed": 15.2,
+    "heading": 45.0,
+    "transmission": "forwardGears",
+    "accelSet": {
+      "longitudinal": 0.5,
+      "lateral": 0.0,
+      "vertical": 0.0,
+      "yawRate": 0.0
+    },
+    "brakes": {
+      "wheelBrakes": false,
+      "traction": false,
+      "abs": false,
+      "stability": false,
+      "brakeBoost": false
+    },
+    "size": {
+      "width": 1.8,
+      "length": 4.5
+    }
+  },
+  "vehicleType": "passenger"
+}

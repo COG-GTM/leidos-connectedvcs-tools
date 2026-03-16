@@ -1,0 +1,44 @@
+# cv2tak Configuration
+# Connected Vehicle to TAK Bridge
+#
+# Environment variable overrides are supported:
+#   CV2TAK_HOST, CV2TAK_PORT, CV2TAK_PROTOCOL, CV2TAK_TLS,
+#   CV2TAK_VEHICLE_COUNT, CV2TAK_BSM_INTERVAL, CV2TAK_LOG_LEVEL
+
+tak_server:
+  # TAK Server connection settings
+  host: "127.0.0.1"
+  port: 8087
+  protocol: "stdout"  # tcp, udp, file, stdout
+  use_tls: false
+  # TLS certificate paths (required when use_tls: true)
+  # certfile: "/path/to/client.pem"
+  # keyfile: "/path/to/client.key"
+  # cafile: "/path/to/ca.pem"
+
+  # UDP multicast settings (used when protocol: udp)
+  # multicast_iface: "0.0.0.0"
+  ttl: 32
+
+  # File output (used when protocol: file)
+  output_file: "cot_output.xml"
+
+simulator:
+  enabled: true
+  vehicle_count: 5
+  # Center point for simulated vehicles (Fairfax VA - USDOT CV pilot site)
+  center_lat: 38.8642
+  center_lon: -77.2270
+  center_elev: 85.0
+  # BSM broadcast interval in seconds (real BSMs are 10 Hz / 0.1s)
+  bsm_interval: 1.0
+  # Include additional message types
+  include_tim: true
+  include_map: true
+  include_spat: true
+  spat_interval: 1.0
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+  # file: "cv2tak.log"
