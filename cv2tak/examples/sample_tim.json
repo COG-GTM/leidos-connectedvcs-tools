@@ -1,0 +1,33 @@
+{
+  "description": "Sample TIM (Traveler Information Message) - Work Zone Advisory",
+  "messageType": "TIM",
+  "msgId": "TIM-WZ-001",
+  "priority": 6,
+  "duration": 60,
+  "itisCodes": [771, 7937, 1025],
+  "itisDescriptions": ["WORK_ZONE", "REDUCED_SPEED", "LANE_CLOSED"],
+  "regions": [
+    {
+      "anchor": {
+        "latitude": 38.8660,
+        "longitude": -77.2250,
+        "elevation": 85.0
+      },
+      "laneWidth": 3.7,
+      "direction": 45.0,
+      "extent": 800.0,
+      "description": "US-50 EB Work Zone: Right lane closed, reduce speed to 35 mph"
+    },
+    {
+      "anchor": {
+        "latitude": 38.8680,
+        "longitude": -77.2200,
+        "elevation": 85.0
+      },
+      "laneWidth": 3.7,
+      "direction": 45.0,
+      "extent": 400.0,
+      "description": "US-50 EB: Merge left, construction ahead"
+    }
+  ]
+}
