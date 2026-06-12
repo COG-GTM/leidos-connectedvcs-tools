@@ -16,7 +16,7 @@ The ConnectedVCS Tools monorepo contains **12 Maven modules** with a shared pare
 | **Spring Boot Services** | map-georeferencing, map-services-proxy | Spring Boot **2.7.18 is EOL** — no more security patches |
 | **Abandoned Module** | private-resources | CAS client 3.1.10 under dead `org.jasig.cas` groupId |
 
-**Bottom line:** 7 dependencies have known CVEs or are EOL with unpatched vulnerabilities. The highest-priority work is replacing the EOL libraries (Jackson 1.x, JBoss Netty 3.x, Jersey 1.x) and upgrading Spring Boot from 2.7 → 3.x.
+**Bottom line:** 8+ dependencies have known CVEs or are EOL with unpatched vulnerabilities. Jetty 9.4.54 alone has **7 unpatched CVEs** (up to CVSS 7.5). The highest-priority work is (1) patching Jetty to 9.4.57, (2) replacing the EOL libraries (Jackson 1.x, JBoss Netty 3.x, Jersey 1.x), and (3) upgrading Spring Boot from 2.7 → 3.x.
 
 ---
 
@@ -75,9 +75,9 @@ private-resources  (standalone, stale)         │
 
 | # | Plugin | Current Version | Latest Stable | Upgrade Type | Notes |
 |---|--------|----------------|---------------|-------------|-------|
-| 10 | `maven-compiler-plugin` | 3.13.0 | **3.14.0** | Minor | Safe; 4.x is beta |
-| 11 | `maven-war-plugin` | 3.4.0 | **3.4.0** | — | Already latest stable |
-| 12 | `maven-resources-plugin` | 3.3.1 | **3.3.1** | — | Already latest stable |
+| 10 | `maven-compiler-plugin` | 3.13.0 | **3.15.0** | Minor | Safe; 4.x is beta |
+| 11 | `maven-war-plugin` | 3.4.0 | **3.5.1** | Minor | Safe upgrade |
+| 12 | `maven-resources-plugin` | 3.3.1 | **3.5.0** | Minor | Safe upgrade |
 | 13 | `maven-surefire-plugin` | 3.5.2 | **3.5.2** | — | Already latest stable |
 | 14 | `jacoco-maven-plugin` | 0.8.12 | **0.8.13** | Patch | Safe upgrade |
 
@@ -87,7 +87,7 @@ private-resources  (standalone, stale)         │
 |---|-----------|---------|---------------|---------|-------------|---------|
 | 15 | `log4j-api` | 2.23.1 | **2.26.0** | Minor | None at 2.23.1 | All core modules |
 | 16 | `log4j-core` | 2.23.1 | **2.26.0** | Minor | None at 2.23.1 (Log4Shell was 2.0–2.17.0) | All core modules |
-| 17 | **`org.jboss.netty:netty`** | **3.2.10.Final** | 3.2.10.Final | — | **CVE-2019-16869** (HTTP smuggling, CVSS 7.5), **CVE-2019-20444** (CVSS 9.1), **CVE-2019-20445** (CVSS 9.1), **CVE-2021-21290** (CVSS 5.5), **CVE-2021-21295** (CVSS 5.9) | asn1decoder, mapencoder, timencoder, rgaencoder |
+| 17 | **`org.jboss.netty:netty`** | **3.2.10.Final** | 3.2.10.Final | — | **CVE-2014-3488** (DoS, CVSS 5.0), **CVE-2019-16869** (HTTP smuggling, CVSS 7.5), **CVE-2019-20444** (CVSS 9.1), **CVE-2019-20445** (CVSS 9.1), **CVE-2021-21290** (CVSS 5.5), **CVE-2021-21295** (CVSS 5.9) | asn1decoder, mapencoder, timencoder, rgaencoder. Abandoned since 2013, superseded by io.netty. |
 | 18 | `javax.xml.bind:jaxb-api` | 2.3.1 | 2.3.1 | — | None known | asn1decoder |
 
 ### D. Message Builder Dependencies
@@ -99,7 +99,7 @@ private-resources  (standalone, stale)         │
 | 21 | **`com.sun.jersey:jersey-*`** | **1.19.3** | 1.19.4 | Patch | None critical known | **EOL**. Jersey 1.x superseded by `org.glassfish.jersey` 2.x/3.x. |
 | 22 | `jersey-test-framework-*` | 1.18.1 | 1.19.4 | Minor | None | EOL with Jersey 1.x |
 | 23 | **`javax.servlet:servlet-api`** | **2.5** | 2.5 | — | None known | **Ancient**. Superseded by `javax.servlet-api` 4.0.1 / `jakarta.servlet-api` 6.x |
-| 24 | `org.eclipse.jetty:jetty-*` | 9.4.54.v20240208 | 9.4.57.v20241219 (9.4 line), **12.0.21** (latest) | Patch / **Major** | CVE-2024-6763 (CVSS 3.7, header validation) in 9.4.x; multiple in older 9.4.x | 9.4.x is EOL (community support ended 2024). Jetty 10.x requires Java 11+, 11.x/12.x requires Java 17+. |
+| 24 | `org.eclipse.jetty:jetty-*` | 9.4.54.v20240208 | 9.4.57.v20241219 (9.4 line), **12.0.21** (latest) | Patch / **Major** | **7 CVEs**: CVE-2024-6763 (CVSS 3.7), CVE-2024-8184 (CVSS 5.9), CVE-2024-13009 (CVSS 7.2), CVE-2025-5115 (CVSS 7.5), CVE-2025-11143 (CVSS 3.7), CVE-2026-5795 (CVSS 7.4), CVE-2026-2332 (CVSS 7.4) | 9.4.x is EOL (community support ended 2024). Jetty 10.x requires Java 11+, 11.x/12.x requires Java 17+. Upgrade to **9.4.57** immediately to patch known CVEs within the 9.4 line. |
 
 ### E. Webapp-Specific Dependencies
 
@@ -225,6 +225,7 @@ All P3 items are backward-compatible within their major version lines.
 *Can all be bundled into a single PR. No code changes required — just version bumps.*
 
 1. Parent POM properties: `slf4j` 2.0.17, `commons-io` 2.22.0, `commons-codec` 1.22.0, `netty` 4.1.121.Final, `jacoco` 0.8.13
+1a. Upgrade Jetty from 9.4.54 → **9.4.57** across message-builder, ISDcreator, TIMcreator (patches 7 CVEs)
 2. Centralize `log4j` version in parent POM property → 2.26.0 (currently hardcoded in each module)
 3. Upgrade `commons-fileupload` 1.5 → 1.6.0
 4. Upgrade `lombok` 1.18.32 → 1.18.38
@@ -297,7 +298,7 @@ All P3 items are backward-compatible within their major version lines.
 
 | PR | Contents | Risk | Est. Effort |
 |----|----------|------|-------------|
-| **PR 1** | Phase 1 — All safe version bumps | Low | 1–2 hours |
+| **PR 1** | Phase 1 — All safe version bumps + Jetty 9.4.54→9.4.57 (7 CVE fixes) | Low | 1–2 hours |
 | **PR 2** | Phase 2 — Remove JBoss Netty 3.x | Low–Medium | 2–4 hours |
 | **PR 3** | Phase 3 — Fix private-resources CAS client | Low | 30 min |
 | **PR 4** | Phase 4 — Jackson 1.x → 2.x | High | 1–2 days |
