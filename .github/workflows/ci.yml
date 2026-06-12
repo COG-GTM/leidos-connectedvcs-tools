@@ -128,7 +128,7 @@ jobs:
 
         - name: Run SonarScanner # This action is used to run sonar scan with above properties and upload results to sonar cloud project
           uses: usdot-fhwa-stol/actions/sonar-scanner@main
-          continue-on-error: true # The SonarCloud project (usdot-fhwa-stol_connectedvcs-tools) belongs to the upstream org; scans fail on forks without access
+          continue-on-error: ${{ github.repository != 'usdot-fhwa-stol/connectedvcs-tools' }} # The SonarCloud project belongs to the upstream org; scans fail on forks without access
           with:
             sonar-token: ${{ secrets.SONAR_TOKEN }}
             working-dir: ${{ env.CLONED_REPO_PATH }}
