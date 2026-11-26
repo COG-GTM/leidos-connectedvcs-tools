@@ -338,6 +338,15 @@ public class IntersectionSituationDataBuilderTest {
         runIntersectionSituationDataBuilderTests(filePath, expectedHexString);
     }
     
+    @Test
+    public void readableStringMatchesBuiltMessage() throws IOException {
+        res = builder.build(new String(Files.readAllBytes(Paths.get("src/test/resources/samplemap.json"))));
+        assertEquals("MapData [timeStamp=385179, msgIssueRevision=105, layerType=3, layerId=1]", res.getReadableString());
+
+        res = builder.build(new String(Files.readAllBytes(Paths.get("src/test/resources/samplerga8.json"))));
+        assertTrue(res.getReadableString().startsWith("RGAData [baseLayerRGAData [majorVer=1, minorVer=1, location=Position3D{latitude=3.99550489E8, longitude=-7.81473752E8"));
+    }
+
     public void runIntersectionSituationDataBuilderTests(String filePath, String expectedHexString) {
         try {
             String jsonContent = new String(Files.readAllBytes(Paths.get(filePath)));
