@@ -54,7 +54,11 @@ public class Encoder {
 
 	//
 	public ByteArrayObject encode(MapData message) {
-		logger.debug("Encoding the map message " + message.toString() + "!");
+		return encode(message, message.toString());
+	}
+
+	public ByteArrayObject encode(MapData message, String messageString) {
+		logger.debug("Encoding the map message " + messageString + "!");
 
 		byte[] encodeMsg = encodeMap(message.getMsgCount(), message.getTimeStamp(), message.getLayerType(),
 				message.getLayerId(), message.getIntersections());

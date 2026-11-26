@@ -22,9 +22,21 @@ public class J2945Helper {
 		return Hex.encodeHexString(bytes);
 	}
 
+	public static String getHexString(RGAData message, String messageString)
+	{
+		byte[] bytes = getBytes(message, messageString);
+		return Hex.encodeHexString(bytes);
+	}
+
 	public static byte[] getBytes(RGAData message) {
 		Encoder encoder = new Encoder();
 		ByteArrayObject encodedMsg = encoder.encode(message);
+		return encodedMsg.getMessage();
+	}
+
+	public static byte[] getBytes(RGAData message, String messageString) {
+		Encoder encoder = new Encoder();
+		ByteArrayObject encodedMsg = encoder.encode(message, messageString);
 		return encodedMsg.getMessage();
 	}
 }
