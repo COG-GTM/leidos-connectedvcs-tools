@@ -52,7 +52,11 @@
  
      //
      public ByteArrayObject encode(RGAData message) {
-         logger.debug("Encoding the RGA message " + message.toString() + "!");
+         return encode(message, message.toString());
+     }
+
+     public ByteArrayObject encode(RGAData message, String messageString) {
+         logger.debug("Encoding the RGA message " + messageString + "!");
  
          byte[] encodeMsg = encodeRGA(message.getBaseLayer(), message.getGeometryContainers(), message.getMovementsContainers(), message.getWayUseContainers());
  

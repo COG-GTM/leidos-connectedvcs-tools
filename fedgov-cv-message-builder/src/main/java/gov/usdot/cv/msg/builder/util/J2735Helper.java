@@ -29,9 +29,21 @@ public class J2735Helper {
 		return Hex.encodeHexString(bytes);
 	}
 
+	public static String getHexString(MapData message, String messageString)
+	{
+		byte[] bytes = getBytes(message, messageString);
+		return Hex.encodeHexString(bytes);
+	}
+
 	public static byte[] getBytes(MapData message) {
 		Encoder encoder = new Encoder();
 		ByteArrayObject encodedMsg = encoder.encode(message);
+		return encodedMsg.getMessage();
+	}
+
+	public static byte[] getBytes(MapData message, String messageString) {
+		Encoder encoder = new Encoder();
+		ByteArrayObject encodedMsg = encoder.encode(message, messageString);
 		return encodedMsg.getMessage();
 	}
 	

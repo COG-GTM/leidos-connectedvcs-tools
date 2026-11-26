@@ -226,15 +226,15 @@ public class IntersectionSituationDataBuilder {
 					logger.debug("in MAP: ");
 					// Removing the first 8 characters from the MessageFrame provides the MAP message
 					// This was tested manually by removing the characters from MessageFrame and testing using the decoder
-					hexString = (J2735Helper.getHexString(md)).substring(8);
 					readableString = md.toString();
+					hexString = J2735Helper.getHexString(md, readableString).substring(8);
 					break;
 				case RGA:
 					isdInputData.validatePoints();
 					rd = buildRGAData(isdInputData);
 					logger.debug("in RGA: ");
-					hexString = J2945Helper.getHexString(rd).substring(8);
 					readableString = rd.toString();
+					hexString = J2945Helper.getHexString(rd, readableString).substring(8);
 					break;
 				case SPaT:
 					break;
@@ -242,15 +242,15 @@ public class IntersectionSituationDataBuilder {
 					isdInputData.validate();
 					md = buildMapData(isdInputData);
 					logger.debug("in FramePlusMap: ");
-					hexString = J2735Helper.getHexString(md);
 					readableString = md.toString();
+					hexString = J2735Helper.getHexString(md, readableString);
 					break;
 				case FramePlusRGA:
 					isdInputData.validatePoints();
 					rd = buildRGAData(isdInputData);
 					logger.debug("in RGA: ");
-					hexString = J2945Helper.getHexString(rd);
 					readableString = rd.toString();
+					hexString = J2945Helper.getHexString(rd, readableString);
 					break;
 				case FramePlusSPaT:
 					break;
