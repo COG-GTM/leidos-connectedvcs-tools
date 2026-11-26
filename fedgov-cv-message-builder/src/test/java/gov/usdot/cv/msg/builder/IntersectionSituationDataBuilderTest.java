@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -344,7 +346,9 @@ public class IntersectionSituationDataBuilderTest {
         assertEquals("MapData [timeStamp=385179, msgIssueRevision=105, layerType=3, layerId=1]", res.getReadableString());
 
         res = builder.build(new String(Files.readAllBytes(Paths.get("src/test/resources/samplerga8.json"))));
-        assertTrue(res.getReadableString().startsWith("RGAData [baseLayerRGAData [majorVer=1, minorVer=1, location=Position3D{latitude=3.99550489E8, longitude=-7.81473752E8"));
+        String rgaReadable = res.getReadableString().replaceAll("\\[I@[0-9a-f]+", "[I@");
+        assertEquals(47276, rgaReadable.length());
+        assertEquals("6db939c9496d14cb66d8b0da5b0e79024411f7a9ebf197f4974148a21691ee2b", DigestUtils.sha256Hex(rgaReadable));
     }
 
     public void runIntersectionSituationDataBuilderTests(String filePath, String expectedHexString) {
